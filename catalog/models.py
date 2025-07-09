@@ -9,12 +9,13 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 class Feature(models.Model):
     name = models.CharField('Название', max_length=255, blank=False, null=False)
+    note = models.CharField('Пометка', max_length=255, blank=True, null=True)
     icon = ResizedImageField(size=[100, 100], quality=95, force_format='WEBP', upload_to='service/icon',
                              blank=True, null=True)
     description = models.TextField('Короткое описание', blank=True, null=True)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.name} - {self.note}'
 
     class Meta:
         verbose_name = 'Преимущества услуги'
@@ -22,11 +23,12 @@ class Feature(models.Model):
 
 class Step(models.Model):
     name = models.CharField('Название', max_length=255, blank=False, null=False)
+    note = models.CharField('Пометка', max_length=255, blank=True, null=True)
     number = models.CharField(max_length=255, blank=True, null=False)
     description = models.TextField('Короткое описание', blank=True, null=True)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.name} - {self.note}'
 
     class Meta:
         verbose_name = 'Этапы услуги'
@@ -34,11 +36,12 @@ class Step(models.Model):
 
 class Price(models.Model):
     name = models.CharField('Название', max_length=255, blank=False, null=False)
+    note = models.CharField('Пометка', max_length=255, blank=True, null=True)
     price = models.CharField(max_length=255, blank=True, null=False)
     description = models.TextField('Короткое описание', blank=True, null=True)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.name} - {self.note}'
 
     class Meta:
         verbose_name = 'Стоимость'
@@ -47,9 +50,11 @@ class Price(models.Model):
 class Faq(models.Model):
     q = models.CharField('Вопрос', max_length=255, blank=False, null=False)
     a = models.CharField('Ответ',max_length=255, blank=False, null=False)
+    note = models.CharField('Пометка', max_length=255, blank=True, null=True)
+    at_index = models.BooleanField(default=False, null=False)
 
     def __str__(self):
-        return f'{self.q} - {self.a}'
+        return f' {"На главной" if self.at_index else ""} {self.q} - {self.a} - {self.note}'
 
     class Meta:
         verbose_name = 'Faq'
@@ -114,8 +119,9 @@ class Service(models.Model):
 
 class Tag(models.Model):
     name = models.CharField('Название', max_length=255, blank=False, null=False)
+    note = models.CharField('Пометка', max_length=255, blank=True, null=True)
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.name} - {self.note}'
 
 class Case(models.Model):
     order_num = models.IntegerField('Номер П/П', default=1, blank=False, null=True)

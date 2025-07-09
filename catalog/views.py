@@ -25,6 +25,10 @@ class CasesListView(generics.ListAPIView):
     queryset = Case.objects.all()
     serializer_class = CaseShortSerializer
 
+class FaqListView(generics.ListAPIView):
+    queryset = Faq.objects.filter(at_index=True)
+    serializer_class = FaqSerializer
+
 class CategoryRetrieveView(generics.RetrieveAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
