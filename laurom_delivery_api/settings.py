@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'nested_inline',
     'django_cleanup',
     'ckeditor',
-    'catalog.apps.CatalogConfig'
+    'catalog.apps.CatalogConfig',
+    'news.apps.NewsConfig'
 ]
 
 LANGUAGES = [
