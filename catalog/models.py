@@ -166,3 +166,11 @@ class CaseGalleryImage(models.Model):
         verbose_name_plural = 'Картинки кейсов'
 
 
+class CallbackForm(models.Model):
+    otkuda = models.CharField('Откуда',max_length=255,blank=False, null=True)
+    kuda= models.CharField('Куда',max_length=255,blank=False, null=True)
+    gab= models.CharField('Габариты',max_length=255,blank=False, null=True)
+    ves= models.CharField('Вус',max_length=255,blank=True, null=True)
+    text = models.TextField('Текст',blank=True, null=True)
+    is_done = models.BooleanField('Обработана', default=False, null=False)
+    created_at = models.DateTimeField(auto_now_add=True)

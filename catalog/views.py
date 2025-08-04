@@ -21,6 +21,11 @@ class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategoryShortSerializer
 
+class CaseView(generics.RetrieveAPIView):
+    queryset = Case.objects.all()
+    serializer_class = CaseSerializer
+    lookup_field = 'name_slug'
+
 class CasesListView(generics.ListAPIView):
     queryset = Case.objects.all()
     serializer_class = CaseShortSerializer
@@ -39,3 +44,6 @@ class ServiceRetrieveView(generics.RetrieveAPIView):
     serializer_class = ServiceSerializer
     lookup_field = 'name_slug'
 
+class NewForm(generics.CreateAPIView):
+    queryset = CallbackForm
+    serializer_class = CallbackFormSerializer

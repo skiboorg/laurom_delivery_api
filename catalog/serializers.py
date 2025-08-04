@@ -81,10 +81,22 @@ class CaseSerializer(serializers.ModelSerializer):
     services = ServiceShortSerializer(many=True, read_only=True)
     class Meta:
         model = Case
-        exclude = ['html_content', 'content']
+        exclude = ['html_content',]
 
 class CaseShortSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True, read_only=True)
     class Meta:
         model = Case
         exclude = ['html_content', 'content']
+
+class CallbackFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CallbackForm
+        fields = '__all__'
+
+        # extra_kwargs = {
+        #     "name": {"error_messages": {"required": "Имя обязательное поле"}, 'required': True},
+        #     'email': {"error_messages": {"required": "Email обязательное поле"},'required': True},
+        #     'phone': {"error_messages": {"required": "Телефон обязательное поле"},'required': True},
+        #     'file': {'required': False},
+        # }
