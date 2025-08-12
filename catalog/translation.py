@@ -42,6 +42,13 @@ class ServiceTranslationOptions(TranslationOptions):
         'name',
         'description',
         'about_us',
+        'price_calc_title',
+        'price_calc_small_title',
+    )
+@register(PriceCalcItem)
+class PriceCalcItemTranslationOptions(TranslationOptions):
+    fields = (
+        'name',
     )
 
 @register(Tag)

@@ -102,6 +102,11 @@ class Service(models.Model):
     prices = models.ManyToManyField(Price, blank=True)
     faqs = models.ManyToManyField(Faq, blank=True)
 
+    price_calc_title = models.TextField('Заголовок блока расчета стоимости большой', blank=True, null=True)
+    price_calc_small_title = models.TextField('Заголовок блока расчета стоимости маленький', blank=True, null=True)
+
+
+
 
     def __str__(self):
         return f'{self.name}'
@@ -116,6 +121,13 @@ class Service(models.Model):
         self.name_slug = slugify(self.name)
         super().save(*args, **kwargs)
 
+
+class PriceCalcItem(models.Model):
+    service = models.ForeignKey(Service,on_delete=models.CASCADE, blank=True, null=True,related_name='price_calc_items')
+    name = models.CharField('Текст', max_length=255, blank=False, null=False)
+
+    def __str__(self):
+        return f'{self.name}'
 
 class Tag(models.Model):
     name = models.CharField('Название', max_length=255, blank=False, null=False)

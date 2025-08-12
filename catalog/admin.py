@@ -11,9 +11,17 @@ class CaseAdmin(NestedModelAdmin):
     model = Case
     inlines = [CaseGalleryImageInline]
 
+class PriceCalcItemInline(NestedStackedInline):
+    model = PriceCalcItem
+    extra = 0
+
+class ServiceAdmin(NestedModelAdmin):
+    model = Service
+    inlines = [PriceCalcItemInline]
+
 
 admin.site.register(Category)
-admin.site.register(Service)
+admin.site.register(Service,ServiceAdmin)
 admin.site.register(Tag)
 admin.site.register(Case,CaseAdmin)
 admin.site.register(Feature)

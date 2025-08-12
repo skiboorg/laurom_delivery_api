@@ -25,11 +25,19 @@ class FaqSerializer(serializers.ModelSerializer):
         model = Faq
         fields = '__all__'
 
+
+class PriceCalcItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PriceCalcItem
+        fields = '__all__'
+
+
 class ServiceSerializer(serializers.ModelSerializer):
     features = FeatureSerializer(many=True, read_only=True)
     steps = StepSerializer(many=True, read_only=True)
     prices = PriceSerializer(many=True, read_only=True)
     faqs = FaqSerializer(many=True, read_only=True)
+    price_calc_items = PriceCalcItemSerializer(many=True, read_only=True)
     class Meta:
         model = Service
         exclude = (
