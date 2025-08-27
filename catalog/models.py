@@ -88,6 +88,7 @@ class Service(models.Model):
 
     name = models.CharField('Название', max_length=255, blank=False, null=False)
     name_slug = models.CharField('ЧПУ',max_length=255,blank=True, null=True)
+    icon_index = models.FileField(upload_to='service/icon',blank=True, null=True)
     icon = ResizedImageField(size=[100, 100], quality=95, force_format='WEBP', upload_to='service/icon',
                               blank=True, null=True)
     image_top = ResizedImageField(size=[1920, 700], quality=95, force_format='WEBP', upload_to='service/icon',

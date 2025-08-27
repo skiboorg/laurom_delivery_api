@@ -55,7 +55,7 @@ class ServiceSerializer(serializers.ModelSerializer):
 class ServiceShortSerializer(serializers.ModelSerializer):
     class Meta:
         model = Service
-        fields = ['name','name_slug']
+        fields = ['name','name_slug','icon_index']
 
 class CategoryShortSerializer(serializers.ModelSerializer):
     services = ServiceShortSerializer(many=True, read_only=True)
